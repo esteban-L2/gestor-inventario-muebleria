@@ -28,6 +28,12 @@ erDiagram
     productos ||--o{ reservas : "se aparta en"
     ubicaciones ||--o{ reservas : "desde"
 
+    productos ||--o{ recetas : "mueble lleva"
+    productos ||--o{ recetas : "insumo usado en"
+    productos ||--o{ ordenes_produccion : "se fabrica en"
+    usuarios ||--o{ ordenes_produccion : "crea"
+    ordenes_produccion |o--o{ movimientos : "consume y produce"
+
     usuarios {
         int id PK
         text nombre
@@ -91,6 +97,7 @@ erDiagram
         numeric cantidad "mayor que 0"
         numeric costo_unitario
         int orden_compra_id FK "opcional"
+        int orden_produccion_id FK "opcional"
         int usuario_id FK
         text nota
         timestamptz fecha
@@ -126,6 +133,25 @@ erDiagram
         int usuario_id FK
         timestamptz creado_en
     }
+    recetas {
+        int producto_id PK, FK "el mueble terminado"
+        int insumo_id PK, FK "el insumo que lleva"
+        numeric cantidad "por cada mueble"
+    }
+    ordenes_produccion {
+        int id PK
+        text numero UK "OP-0001"
+        int producto_id FK "mueble a fabricar"
+        numeric cantidad
+        estado_produccion estado "planificada | en_proceso | terminada | cancelada"
+        int ubicacion_taller_id FK
+        int ubicacion_destino_id FK "donde queda el mueble"
+        date fecha_inicio
+        date fecha_fin
+        numeric costo_mano_obra
+        int creado_por FK
+        text nota
+    }
 ```
 
 ## Las tablas en una frase
@@ -141,6 +167,8 @@ erDiagram
 | `movimientos` | El historial de todo lo que entra, sale o se traslada. Nunca se edita ni se borra. |
 | `ordenes_compra` / `_lineas` | Pedidos a proveedores y lo que se ha recibido de cada uno. |
 | `reservas` | Muebles apartados por un cliente con un abono. |
+| `recetas` | La "lista de materiales" de cada mueble: qué insumos lleva y cuánto de cada uno. |
+| `ordenes_produccion` | La fabricación de N muebles en el taller: consume insumos y produce muebles terminados. |
 
 ## Decisiones de diseño (y por qué)
 
@@ -165,9 +193,16 @@ erDiagram
 
 9. **Las variantes son SKUs separados (por ahora).** "Sofá 3 puestos gris" y "Sofá 3 puestos azul" son dos productos. Es más simple, y una tabla `variantes` se puede agregar después si hace falta.
 
-10. **Las fechas usan `timestamptz`** (con zona horaria), para que no haya confusiones con la hora de Ecuador.
+10. **La fabricación se registra con los mismos movimientos.** La mueblería fabrica sus propios muebles. Cuando una orden de producción se **termina**, en una sola transacción:
+    - se registra una `salida` (motivo `produccion`) por cada insumo de la receta × la cantidad fabricada, desde el taller;
+    - se registra una `entrada` (motivo `produccion`) del mueble terminado en su ubicación de destino;
+    - el costo del mueble = costo de los insumos consumidos + mano de obra.
 
-11. **Nada se borra físicamente si tiene historial.** Productos, proveedores y ubicaciones usan `activo = false`.
+    Si falta algún insumo, se rechaza la orden completa.
+
+11. **Las fechas usan `timestamptz`** (con zona horaria), para que no haya confusiones con la hora de Ecuador.
+
+12. **Nada se borra físicamente si tiene historial.** Productos, proveedores y ubicaciones usan `activo = false`.
 
 ## Orden de construcción
 
@@ -175,4 +210,5 @@ erDiagram
 |---|---|
 | Fase 2–4 (núcleo) | `usuarios`, `categorias`, `proveedores`, `ubicaciones`, `productos`, `existencias`, `movimientos` |
 | Fase 6 | `ordenes_compra`, `ordenes_compra_lineas` |
-| Fase 9 | `reservas` (y `variantes` u `ordenes_produccion` si hacen falta) |
+| Fase 7 | `recetas`, `ordenes_produccion` (fabricación) |
+| Fase 10 | `reservas` (y `variantes` si hace falta) |

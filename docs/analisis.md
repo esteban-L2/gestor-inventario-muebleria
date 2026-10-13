@@ -34,7 +34,8 @@ El proyecto empezó como un **prototipo de interfaz** (React 18 + Vite 5) genera
 
 Además del inventario genérico, una mueblería necesita:
 
-- **Producto terminado e insumos**: muebles para vender (sofás, comedores…) y materia prima para fabricar o tapizar (tableros, telas, herrajes).
+- **Producto terminado e insumos**: la mueblería **fabrica sus propios muebles**. Compra materia prima (tableros, telas, herrajes), la transforma en el taller y vende el mueble terminado.
+- **Fabricación**: cada mueble tiene una receta (qué insumos lleva). Al terminar una orden de producción se descuentan los insumos y entra el mueble al stock con su costo real.
 - **Variantes**: el mismo modelo en distintos colores, telas o acabados, cada uno con su propio stock.
 - **Exhibición y bodega**: saber qué unidad está en el showroom y cuál en bodega, y poder moverlas entre ubicaciones.
 - **Apartados o reservas**: un cliente abona y el mueble queda reservado. Sigue en stock, pero ya no está disponible para la venta.
@@ -79,6 +80,7 @@ Además del inventario genérico, una mueblería necesita:
 | 4 | Movimientos reales con transacciones y kardex por producto | ⏳ |
 | 5 | Login real (JWT) y roles | ⏳ |
 | 6 | Órdenes de compra: crear → enviar → recibir | ⏳ |
-| 7 | Dashboard y reportes con datos reales; exportar a Excel/PDF | ⏳ |
-| 8 | Publicación: Postgres en la nube, API en Render y frontend en Vercel | ⏳ |
-| 9 | Extras: reservas, variantes, código de barras con cámara, toma física | ⏳ |
+| 7 | Fabricación: recetas (lista de materiales) y órdenes de producción | ⏳ |
+| 8 | Dashboard y reportes con datos reales; exportar a Excel/PDF | ⏳ |
+| 9 | Publicación: Postgres en la nube, API en Render y frontend en Vercel | ⏳ |
+| 10 | Extras: reservas, variantes, código de barras con cámara, toma física | ⏳ |
