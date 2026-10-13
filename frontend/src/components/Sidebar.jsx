@@ -1,4 +1,5 @@
 import Icon from '../Icon.jsx'
+import { APP_NAME } from '../config.js'
 
 const NAV = [
   ['dashboard','dashboard'], ['products','box'], ['movements','swap'],
@@ -15,7 +16,7 @@ export default function Sidebar({ L, screen, onNavigate, collapsed }) {
         <div style={{ flex:'none', width:32, height:32, borderRadius:9, background:'var(--mint)', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--accent-deep)' }}>
           <Icon name="box" size={18} />
         </div>
-        <span style={{ fontWeight:800, fontSize:17, letterSpacing:'-.02em', color:'#fff', whiteSpace:'nowrap', opacity:labelOpacity, transition:'opacity .2s' }}>Acopio</span>
+        <span style={{ fontWeight:800, fontSize:15, letterSpacing:'-.02em', color:'#fff', whiteSpace:'nowrap', opacity:labelOpacity, transition:'opacity .2s' }}>{APP_NAME}</span>
       </div>
       <nav style={{ display:'flex', flexDirection:'column', gap:3 }}>
         {NAV.map(([key, icon]) => {
@@ -43,9 +44,9 @@ export default function Sidebar({ L, screen, onNavigate, collapsed }) {
       </nav>
       <div style={{ marginTop:'auto', display:'flex', flexDirection:'column', gap:12 }}>
         <div style={{ display:'flex', alignItems:'center', gap:11, padding:10, borderRadius:12, background:'rgba(255,255,255,.05)' }}>
-          <div style={{ flex:'none', width:34, height:34, borderRadius:'50%', background:'var(--mint)', color:'var(--accent-deep)', display:'flex', alignItems:'center', justifyContent:'center', fontWeight:700, fontSize:13 }}>AR</div>
+          <div style={{ flex:'none', width:34, height:34, borderRadius:'50%', background:'var(--mint)', color:'var(--accent-deep)', display:'flex', alignItems:'center', justifyContent:'center', fontWeight:700, fontSize:13 }}>AD</div>
           <div style={{ overflow:'hidden', opacity:labelOpacity }}>
-            <div style={{ fontSize:13.5, fontWeight:600, color:'#fff', whiteSpace:'nowrap' }}>Ana Rojas</div>
+            <div style={{ fontSize:13.5, fontWeight:600, color:'#fff', whiteSpace:'nowrap' }}>Administrador</div>
             <div style={{ fontSize:11.5, color:'#8FB0A0', whiteSpace:'nowrap' }}>{L.login.brandTag}</div>
           </div>
         </div>

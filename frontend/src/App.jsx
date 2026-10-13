@@ -21,7 +21,7 @@ export default function App() {
   const [lang, setLang] = useState('es');
   const [collapsed, setCollapsed] = useState(false);
   const [query, setQuery] = useState('');
-  const [selectedId, setSelectedId] = useState('WH-1002');
+  const [selectedId, setSelectedId] = useState('MB-1002');
   const [products, setProducts] = useState(PRODUCTS.map(p => ({ ...p })));
   const [movements, setMovements] = useState(INITIAL_MOVEMENTS);
   const [toast, setToast] = useState(null);

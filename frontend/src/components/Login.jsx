@@ -1,4 +1,5 @@
 import Icon from '../Icon.jsx'
+import { APP_NAME } from '../config.js'
 
 export default function Login({ L, onLogin }) {
   return (
@@ -9,7 +10,7 @@ export default function Login({ L, onLogin }) {
             <div style={{ width:34, height:34, borderRadius:9, background:'var(--mint)', display:'flex', alignItems:'center', justifyContent:'center', color:'var(--accent-deep)' }}>
               <Icon name="box" size={18} />
             </div>
-            <span style={{ fontWeight:800, fontSize:18, letterSpacing:'-.02em' }}>Acopio</span>
+            <span style={{ fontWeight:800, fontSize:18, letterSpacing:'-.02em' }}>{APP_NAME}</span>
           </div>
           <div>
             <div style={{ fontSize:13, color:'var(--mint)', fontWeight:600, letterSpacing:'.06em', textTransform:'uppercase', marginBottom:14 }}>{L.login.brandTag}</div>
@@ -19,7 +20,7 @@ export default function Login({ L, onLogin }) {
               <div><div style={{ fontFamily:"'JetBrains Mono',monospace", fontSize:26, fontWeight:700 }}>99.1%</div><div style={{ fontSize:12, color:'#9FBDAE' }}>{L.rep.accuracy}</div></div>
             </div>
           </div>
-          <div style={{ fontSize:12, color:'#7FA08F' }}>© 2026 Acopio · {L.login.brandTag}</div>
+          <div style={{ fontSize:12, color:'#7FA08F' }}>© 2026 {APP_NAME} · {L.login.brandTag}</div>
         </div>
         <div style={{ flex:1, padding:'48px 44px', display:'flex', flexDirection:'column', justifyContent:'center', maxWidth:440, margin:'0 auto', width:'100%' }}>
           <div style={{ fontSize:24, fontWeight:700, letterSpacing:'-.02em' }}>{L.login.title}</div>
@@ -27,7 +28,7 @@ export default function Login({ L, onLogin }) {
           <div style={{ marginTop:28, display:'flex', flexDirection:'column', gap:16 }}>
             <label style={{ display:'flex', flexDirection:'column', gap:7, fontSize:13, fontWeight:600, color:'var(--muted)' }}>
               {L.login.email}
-              <input defaultValue="ana@acopio.io" style={inputStyle} />
+              <input defaultValue="admin@muebleria.local" style={inputStyle} />
             </label>
             <label style={{ display:'flex', flexDirection:'column', gap:7, fontSize:13, fontWeight:600, color:'var(--muted)' }}>
               {L.login.pass}

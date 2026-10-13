@@ -1,8 +1,8 @@
-# Acopio — Gestión de inventario (React + Vite)
+# Frontend — Gestor de Inventario (React + Vite)
 
-Prototipo de front-end para gestión de inventario/almacén, generado a partir de un diseño HTML de referencia. Verde fresco, bilingüe (ES/EN), animado.
+Interfaz web del gestor de inventario para la mueblería. Por ahora funciona con **datos de prueba** (`src/data.js`); en las siguientes fases se conecta al backend.
 
-## Instalar y correr
+## Correr en local
 
 ```bash
 npm install
@@ -20,16 +20,19 @@ npm run preview
 
 ## Estructura
 
-- `src/data.js` — datos mock (productos, categorías, proveedores, órdenes, movimientos).
-- `src/translations.js` — diccionario ES/EN.
-- `src/utils.js` — helpers (nivel de stock, colores de severidad, formato).
-- `src/Icon.jsx` — set de iconos SVG inline.
-- `src/components/` — Login, Sidebar, Topbar, Toast (shell de la app).
-- `src/screens/` — Dashboard, Products, Detail, Movements, Alerts, Suppliers, Orders, Reports.
-- `src/App.jsx` — estado global (auth, pantalla activa, idioma, productos, movimientos) y enrutamiento simple por estado (sin react-router).
+- `src/config.js`: nombre de la aplicación.
+- `src/data.js`: datos de prueba (muebles, categorías, proveedores, órdenes, movimientos).
+- `src/translations.js`: textos en español e inglés.
+- `src/utils.js`: helpers (nivel de stock, colores de severidad, formato).
+- `src/Icon.jsx`: iconos SVG.
+- `src/components/`: Login, Sidebar, Topbar y Toast (el armazón de la app).
+- `src/screens/`: Dashboard, Products, Detail, Movements, Alerts, Suppliers, Orders y Reports.
+- `src/App.jsx`: estado global y navegación entre pantallas (por ahora sin react-router).
 
-## Notas
+## Estado actual
 
-- Todo el estado vive en `App.jsx` con hooks (`useState`). No hay backend: los datos son mock y los movimientos de stock se aplican en memoria.
-- Los estilos son inline (mismo enfoque que el prototipo original) + una hoja `index.css` mínima para variables CSS, keyframes y estados hover.
-- Para producción real: conectar `applyMove`, `products` y `movements` a una API, añadir validación de formularios y manejo de errores.
+- No hay backend: los movimientos de stock se aplican solo en memoria y se pierden al recargar.
+- El login es de demostración: acepta cualquier dato.
+- Los estilos van dentro de cada componente, más una hoja `index.css` mínima con variables CSS y animaciones.
+
+Ver [`../docs/analisis.md`](../docs/analisis.md) para la lista de pendientes.
