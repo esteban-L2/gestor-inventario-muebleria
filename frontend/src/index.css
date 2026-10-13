@@ -1,0 +1,47 @@
+:root{
+  --accent:#117A4F;
+  --accent-deep:#0E3B2A;
+  --mint:#5FD39A;
+  --ink:#16201B;
+  --muted:#69756C;
+  --bg:#F4F7F4;
+  --line:#E6ECE7;
+  --card:#FFFFFF;
+  --amber:#B9770E;
+  --amber-bg:#FBEFD9;
+  --red:#C9483B;
+  --red-bg:#FBE7E4;
+  --mint-bg:#E9F5EE;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{margin:0;background:var(--bg);font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-deep)}
+input,button,select{font-family:inherit}
+button{border:none;background:none}
+
+@keyframes scIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-thumb{background:#d3dcd5;border-radius:9px;border:3px solid var(--bg)}
+::-webkit-scrollbar-track{background:transparent}
+
+.scIn{animation:scIn .42s cubic-bezier(.2,.7,.2,1) both}
+.pop{animation:pop .5s cubic-bezier(.2,.7,.2,1) both}
+.growV{transform-origin:bottom;animation:grow .7s cubic-bezier(.2,.7,.2,1) both}
+.growH{transform-origin:left;animation:barGrow .7s cubic-bezier(.2,.7,.2,1) both}
+.toastIn{animation:toastIn .35s cubic-bezier(.2,.7,.2,1) both}
+
+.hoverable{transition:background .18s,color .18s,border-color .18s,transform .15s,box-shadow .18s}
+.hoverable:hover{background:#f7faf8}
+.card-hover:hover{border-color:#d6e0d8 !important;box-shadow:0 12px 28px -20px rgba(14,59,42,.4)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-deep)}
+.btn-ghost{background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:#cdd8cf}
+input:focus,select:focus{outline:none;border-color:var(--accent) !important;box-shadow:0 0 0 3px var(--mint-bg)}
